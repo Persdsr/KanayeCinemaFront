@@ -1,14 +1,36 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 
-const BigMoviePoster = (fileName) => {
+const BigMoviePoster = ({bigMovie}) => {
+    const videoRef = useRef(null)
+    const handlePlayVideo = () => {
+        videoRef.current.play()
+    }
+
     return (
-        <div className="featured-content"
-             style={{ background: `linear-gradient(to bottom, rgba(0,0,0,0), #151515), url('img/${fileName.fileName}')` }}>
-            <img className="featured-title" src="img/f-t-1.png" alt="" />
-            <p className="featured-desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto illo dolor
-                deserunt nam assumenda ipsa eligendi dolore, ipsum id fugiat quo enim impedit, laboriosam omnis
-                minima voluptatibus incidunt. Accusamus, provident.</p>
-            <button className="featured-button">WATCH</button>
+        <div className="featured-content">
+            <video ref={videoRef} className="featured-video" autoPlay loop muted>
+                {<source src={bigMovie.trailer.replace("localhost", "192.168.0.2")} type="video/mp4" />}
+                Your browser does not support the video tag.
+            </video>
+            {console.log(bigMovie.trailer)}
+
+            <div className="featured-overlay">
+                {/*<img
+                    className="featured-image"
+                    src={bigMovie.}
+                    alt="Description"
+                    width="200"
+                    height="200"
+                />*/}
+
+                <div className="featured-text">
+                    <p className="featured-desc">
+                        {bigMovie.description === null ? "Нет описания" : bigMovie.description.slice(0, 50)}
+                    </p>
+                </div>
+
+                <button className="featured-button">WATCH</button>
+            </div>
         </div>
     );
 };
