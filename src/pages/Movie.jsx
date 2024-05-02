@@ -27,9 +27,12 @@ function Movie() {
 
             {bigMovies[0] ? <BigMoviePoster bigMovie={bigMovies[0]} /> : ""}
 
-            {genres.slice(0, 1).map((genre) => (
+            {genres.slice(0, 2).map((genre) => (
                genre.movies.length > 0 ? <Genre genre={genre} key={genre.id} /> : ""
             ))}
+
+            <div className="space"></div>
+
             {bigMovies[1] ? <BigMoviePoster bigMovie={bigMovies[1]} /> : ""}
 
             {genres.slice(1, 2).map((genre) => (

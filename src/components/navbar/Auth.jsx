@@ -14,13 +14,12 @@ const Auth = () => {
         localStorage.removeItem("token")
         setItem(null)
         router("/")
+        window.location.reload()
     }
 
     const [userName, setUserName] = useState()
 
     async function fetchContent() {
-        if (userName === undefined) {
-        } else {
             try {
                 const res = await fetch("http://localhost:8080/api/auth/userinfo", {
                     headers: {
@@ -32,23 +31,25 @@ const Auth = () => {
                 if (res.ok) {
                     const json = await res.json();
                     setUserName(json.username);
+                    localStorage.setItem("username", json.username)
+                    localStorage.setItem("roles", json.roles)
                 } else {
                     console.error(`Failed to fetch: ${res.status} - ${res.statusText}`);
                 }
             } catch (error) {
                 console.error("Error fetching content:", error);
-            }
+
         }
     }
 
     return (
         <div className="profile-container">
-
             {
                 item !== null ?
                     <h2>{userName}</h2>
                     : null
             }
+
             {
                 item !== null ?
                     <h2 style={{color: "#4dbf00", cursor: "pointer", fontSize: "20px", marginLeft: "10px"}}

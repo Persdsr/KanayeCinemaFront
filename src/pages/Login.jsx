@@ -25,6 +25,7 @@ const Login = () => {
             localStorage.setItem("token", json)
             localStorage.setItem("username", state.username)
             router("/")
+            window.location.reload()
         }
     }
 
@@ -43,7 +44,7 @@ const Login = () => {
                 <div>
                     <input type="password" name="password" placeholder="Пароль" value={state.password} autoComplete="off" onChange={fill}/>
                 </div>
-                <button type="submit">Войти</button>
+                <button style={{width: "200px"}} type="submit">Войти</button>
             </form>
         </div>
     );

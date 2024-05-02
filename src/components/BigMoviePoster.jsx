@@ -1,18 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
+import zohanTrailer from "../media/Zohan.mp4"
 
 const BigMoviePoster = ({bigMovie}) => {
-    const videoRef = useRef(null)
-    const handlePlayVideo = () => {
-        videoRef.current.play()
-    }
 
     return (
         <div className="featured-content">
-            <video ref={videoRef} className="featured-video" autoPlay loop muted>
-                {<source src={bigMovie.trailer.replace("localhost", "192.168.0.2")} type="video/mp4" />}
-                Your browser does not support the video tag.
+            <video className="featured-video" autoPlay loop muted>
+                <source src={zohanTrailer} type="video/mp4" />
             </video>
-            {console.log(bigMovie.trailer)}
 
             <div className="featured-overlay">
                 {/*<img

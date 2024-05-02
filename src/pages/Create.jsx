@@ -83,6 +83,7 @@ const Create = () => {
             });
 
             navigate("/", {state: "PRIVET"});
+            window.location.reload()
 
         } catch (error) {
             console.error('Error adding movie:', error.response.data);
